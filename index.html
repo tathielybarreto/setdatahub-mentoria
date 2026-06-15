@@ -1,0 +1,1623 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentoria Set Master em Grupo</title>
+  <meta name="description" content="Acompanhamento para profissionais que desejam se posicionar com inteligência, utilizando dados como diferencial competitivo para influenciar decisões, impressionar a liderança e acelerar reconhecimento, promoção e valorização interna.">
+  <style>
+    :root {
+      --uva: #2D1330;
+      --violeta: #30203D;
+      --areia: #BDB1A2;
+      --off: #F2F4EE;
+      --grafite: #262626;
+      --surface: #151314;
+      --surface-low: #1D1B1C;
+      --surface-mid: #211F20;
+      --surface-high: #2D2A2B;
+      --surface-top: #383435;
+      --primary: #C8BAA8;
+      --tertiary: #D8BFD4;
+      --line: rgba(242, 244, 238, 0.14);
+      --muted: rgba(242, 244, 238, 0.72);
+      --soft: rgba(189, 177, 162, 0.16);
+      --shadow: 0 36px 80px rgba(242, 244, 238, 0.05);
+      --radius: 6px;
+      --max: 1180px;
+      --font-body: "Open Sans", "Segoe UI", sans-serif;
+      --font-editorial: Didot, "Bodoni 72", Georgia, serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--off);
+      font-family: var(--font-body);
+      line-height: 1.55;
+      letter-spacing: 0;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 92% 10%, rgba(200, 186, 168, 0.14), transparent 30%),
+        linear-gradient(180deg, rgba(45, 19, 48, 0.52), transparent 42%);
+      opacity: 0.92;
+      z-index: -2;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(242,244,238,0.05) 0.7px, transparent 0.7px);
+      background-size: 18px 18px;
+      mask-image: linear-gradient(to bottom, black, transparent 64%);
+      opacity: 0.22;
+      z-index: -1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(21, 19, 20, 0.86);
+    }
+    .nav-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 180px;
+    }
+    .brand img { width: 148px; height: auto; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .nav-links a:hover { color: var(--off); }
+    .nav-cta {
+      color: var(--off);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: var(--radius);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: transform 180ms ease, filter 180ms ease, background 180ms ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.06); }
+    .btn:focus-visible,
+    .nav-links a:focus-visible,
+    .nav-cta:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid rgba(200, 186, 168, 0.75);
+      outline-offset: 4px;
+    }
+    .btn-primary {
+      color: var(--off);
+      background: radial-gradient(ellipse at center, #BBA98E 0%, #A89278 40%, #7A6A58 100%);
+      box-shadow: 0 24px 58px rgba(187, 169, 142, 0.14);
+    }
+    .btn-secondary {
+      color: var(--off);
+      background: transparent;
+      border: 1.5px solid rgba(242, 244, 238, 0.5);
+    }
+
+    .section {
+      position: relative;
+      padding: 112px 0;
+    }
+    .section.alt { background: var(--surface-low); }
+    .section.mid { background: var(--surface-mid); }
+    .section.light {
+      background: var(--off);
+      color: var(--grafite);
+    }
+    .section.light .eyebrow {
+      color: var(--uva);
+    }
+    .section.light h2,
+    .section.light h3,
+    .section.light strong {
+      color: var(--grafite);
+    }
+    .section.light .lead,
+    .section.light .text,
+    .section.light p,
+    .section.light li {
+      color: rgba(38, 38, 38, 0.76);
+    }
+    .section.light .phase,
+    .section.light .proof,
+    .section.light .offer-box {
+      background: rgba(189, 177, 162, 0.18);
+      outline: 1px solid rgba(45, 19, 48, 0.10);
+    }
+    .section.light .phase h3,
+    .section.light .proof strong {
+      color: var(--uva);
+    }
+    .section.light .price {
+      background: var(--grafite);
+      color: var(--off);
+    }
+    .section.light .price strong,
+    .section.light .price span {
+      color: var(--off);
+    }
+    .section.light .price small,
+    .section.light .price .text {
+      color: rgba(242, 244, 238, 0.72);
+    }
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--areia);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .hero .eyebrow {
+      display: inline-flex;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(189, 177, 162, 0.2);
+      background: rgba(189, 177, 162, 0.06);
+      margin-bottom: 36px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 760px;
+      margin-bottom: 26px;
+      font-size: clamp(40px, 6vw, 56px);
+      line-height: 1.04;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+    .hero h1 {
+      margin-bottom: 14px;
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .hero h2 {
+      max-width: 700px;
+      margin-bottom: 24px;
+      font-family: var(--font-body);
+      font-style: normal;
+      font-weight: 700;
+      font-size: clamp(24px, 3.2vw, 36px);
+      line-height: 1.16;
+      color: var(--primary);
+    }
+    h2 {
+      max-width: 780px;
+      margin-bottom: 24px;
+      font-family: var(--font-editorial);
+      font-size: clamp(30px, 4.4vw, 48px);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: 0;
+      color: var(--off);
+    }
+    .editorial {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
+    }
+    .lead {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+    }
+    .text {
+      max-width: 690px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero {
+      min-height: calc(100vh - 74px);
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      padding: 86px 0 72px;
+      background:
+        linear-gradient(105deg, rgba(45, 19, 48, 0.98) 0%, rgba(21, 19, 20, 0.97) 56%, rgba(21, 19, 20, 0.78) 100%),
+        var(--surface);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 1fr);
+      gap: 64px;
+      align-items: start;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 48px;
+    }
+    .portrait {
+      overflow: hidden;
+      border-radius: 16px;
+    }
+    .portrait img.photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: -26%;
+      margin-bottom: -10%;
+    }
+    .portrait img.mark {
+      position: absolute;
+      right: -48px;
+      top: 48px;
+      width: 220px;
+      opacity: 0.18;
+      transform: translateX(18%);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 56px;
+      align-items: start;
+    }
+    /* === DOBRA 2 === */
+    .s2-pain {
+      background: var(--off);
+      color: var(--grafite);
+      overflow: hidden;
+    }
+    .s2-pain::before {
+      content: '';
+      position: absolute;
+      top: -140px; right: -100px;
+      width: 560px; height: 560px;
+      background: radial-gradient(circle, rgba(189,177,162,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .s2-pain::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(45,19,48,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .s2-overline {
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .s2-overline.in { opacity: 1; transform: none; }
+    .s2-chip {
+      display: inline-flex;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(45, 19, 48, 0.18);
+      background: rgba(45, 19, 48, 0.05);
+      color: var(--uva);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .s2-headline {
+      max-width: 800px;
+      margin-bottom: 64px;
+      font-family: var(--font-body);
+      font-size: clamp(24px, 3vw, 38px);
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--grafite);
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease 0.08s, transform 0.65s ease 0.08s;
+    }
+    .s2-headline.in { opacity: 1; transform: none; }
+    .s2-grad {
+      background: linear-gradient(120deg, #2D1330 0%, #4A2060 55%, #30203D 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .s2-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .s2-card {
+      background: rgba(189, 177, 162, 0.16);
+      outline: 1px solid rgba(45, 19, 48, 0.08);
+      border-radius: var(--radius);
+      padding: 34px 36px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .s2-card.in { opacity: 1; transform: none; }
+    .s2-grid .s2-card:nth-child(1) { transition-delay: 0.04s; }
+    .s2-grid .s2-card:nth-child(2) { transition-delay: 0.11s; }
+    .s2-grid .s2-card:nth-child(3) { transition-delay: 0.06s; }
+    .s2-grid .s2-card:nth-child(4) { transition-delay: 0.13s; }
+    .s2-card-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(45, 19, 48, 0.38);
+      margin-bottom: 14px;
+    }
+    .s2-card p { margin: 0; font-size: 15px; line-height: 1.7; color: rgba(38,38,38,0.78); }
+    .s2-card p strong { color: var(--uva); font-weight: 600; }
+    .s2-card--risk {
+      grid-column: 1 / -1;
+      background: var(--uva);
+      outline: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .s2-card--risk::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(200,186,168,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .s2-card--risk .s2-card-label { color: rgba(189,177,162,0.5); }
+    .s2-card--risk p { font-size: 17px; color: rgba(242,244,238,0.85); position: relative; z-index: 1; }
+    .s2-card--risk p strong { color: var(--areia); }
+    .s2-card--path { grid-column: 1 / -1; }
+    .s2-path-inner { display: flex; flex-direction: column; gap: 24px; }
+    .s2-path-inner p { margin: 0; }
+    .s2-values {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .s2-values li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 14px 16px;
+      background: rgba(45, 19, 48, 0.07);
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--uva);
+      text-align: center;
+    }
+    .s2-anchor {
+      position: relative;
+      border-radius: var(--radius);
+      padding: 2px;
+      background: linear-gradient(135deg, rgba(200,186,168,0.5) 0%, rgba(47,21,45,0.3) 50%, rgba(48,32,61,0.6) 100%);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+    }
+    .s2-anchor.in { opacity: 1; transform: none; }
+    .s2-anchor-inner {
+      background: linear-gradient(135deg, #2D1330 0%, #30203D 100%);
+      border-radius: 4px;
+      padding: 40px 48px;
+    }
+    .s2-anchor-inner p { margin: 0; font-size: 16px; line-height: 1.68; color: rgba(242,244,238,0.82); }
+    .s2-anchor-inner strong { color: var(--areia); font-weight: 700; }
+
+    /* === DOBRA 3 === */
+    .s3-method {
+      background: var(--uva);
+      overflow: hidden;
+    }
+    .s3-method::before {
+      content: '';
+      position: absolute;
+      top: -160px; right: -160px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(189,177,162,0.1) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .s3-method::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 440px; height: 440px;
+      background: radial-gradient(circle, rgba(48,32,61,0.6) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .s3-header {
+      max-width: 860px;
+      margin-bottom: 72px;
+    }
+    .s3-chip {
+      display: inline-flex;
+      margin-bottom: 36px;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(189, 177, 162, 0.22);
+      background: rgba(189, 177, 162, 0.06);
+      color: var(--areia);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .s3-chip.in { opacity: 1; transform: none; }
+    .s5-chip {
+      display: inline-flex;
+      margin-bottom: 36px;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(189, 177, 162, 0.22);
+      background: rgba(189, 177, 162, 0.06);
+      color: var(--areia);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .s3-headline {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: clamp(24px, 3vw, 38px);
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--off);
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease 0.08s, transform 0.65s ease 0.08s;
+    }
+    .s3-headline.in { opacity: 1; transform: none; }
+    .s3-headline .s3-em {
+      background: linear-gradient(120deg, #C8BAA8 0%, #BDB1A2 60%, #D8BFD4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .s3-body-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .s3-text {
+      max-width: 680px;
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease 0.05s, transform 0.6s ease 0.05s;
+    }
+    .s3-text.in { opacity: 1; transform: none; }
+    .s3-text p {
+      margin: 0 0 20px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(242, 244, 238, 0.72);
+    }
+    .s3-text p:last-of-type { margin-bottom: 36px; }
+    .s3-dados-reveal {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(189, 177, 162, 0.14);
+    }
+    .s3-dados-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(189, 177, 162, 0.55);
+    }
+    .s3-dados-name {
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      background: linear-gradient(120deg, #C8BAA8 0%, #BDB1A2 50%, #D8BFD4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .s3-image {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease 0.14s, transform 0.6s ease 0.14s;
+    }
+    .s3-image.in { opacity: 1; transform: none; }
+    .s3-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: rgba(189, 177, 162, 0.06);
+      border-radius: var(--radius);
+      outline: 1px solid rgba(189, 177, 162, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(189, 177, 162, 0.35);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .method {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 44px;
+    }
+    .method-card {
+      min-height: 220px;
+      padding: 24px 20px;
+      background: linear-gradient(180deg, rgba(56, 52, 53, 0.78), rgba(33, 31, 32, 0.88));
+      border-radius: var(--radius);
+      outline: 1px solid rgba(242, 244, 238, 0.10);
+    }
+    .s3-method .method { margin-top: 16px; }
+    .s3-method .method-card {
+      background: linear-gradient(180deg, rgba(58, 28, 66, 0.72) 0%, rgba(38, 14, 46, 0.88) 100%);
+      outline: 1px solid rgba(189, 177, 162, 0.12);
+    }
+
+    /* ── Dobra 4 – Prova Social ────────────────── */
+    .s4-social { position: relative; }
+    .s4-inner { position: relative; }
+    .s4-overline {
+      display: inline-flex;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(45, 19, 48, 0.18);
+      background: rgba(45, 19, 48, 0.05);
+      margin-bottom: 24px;
+    }
+    .s4-overline-text {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--uva);
+    }
+    .s4-headline {
+      font-family: var(--font-body);
+      font-style: normal;
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--grafite);
+      margin: 0 0 56px;
+    }
+    .s4-deco-quote {
+      position: absolute;
+      top: -16px;
+      right: 0;
+      font-family: var(--font-editorial);
+      font-size: 200px;
+      line-height: 0.8;
+      color: rgba(189, 177, 162, 0.26);
+      pointer-events: none;
+      user-select: none;
+      font-style: normal;
+    }
+    .s4-carousel-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .s4-track-outer {
+      overflow: hidden;
+      flex: 0 0 clamp(280px, 46vw, 468px);
+    }
+    .s4-track {
+      display: flex;
+      will-change: transform;
+      transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .s4-slide {
+      min-width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .s4-slide img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .s4-btn {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(38, 38, 38, 0.10);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      color: var(--grafite);
+    }
+    .s4-btn:hover { background: rgba(45, 19, 48, 0.16); }
+    .s4-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+    .s4-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(45, 19, 48, 0.18);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .s4-dot.s4-active {
+      background: var(--uva);
+      transform: scale(1.25);
+    }
+
+    .method-card b {
+      display: block;
+      color: var(--primary);
+      font-size: 52px;
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+    .method-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--off);
+      font-size: 16px;
+    }
+    .method-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      margin-top: 44px;
+    }
+    .phase {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+      padding: 28px;
+      background: rgba(242, 244, 238, 0.045);
+      border-radius: var(--radius);
+      outline: 1px solid rgba(242, 244, 238, 0.08);
+    }
+    .phase .num {
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .phase h3 {
+      margin-bottom: 8px;
+      font-size: 22px;
+    }
+    .phase p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .s5-incluso { background: var(--uva); }
+    .s5-incluso h2 {
+      color: var(--off);
+      font-family: var(--font-body);
+      font-style: normal;
+      font-weight: 700;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+    .s5-incluso .timeline { grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .s5-incluso .phase {
+      grid-template-columns: 1fr;
+      padding: 20px 18px;
+      min-height: unset;
+      background: linear-gradient(180deg, rgba(58, 28, 66, 0.65) 0%, rgba(38, 14, 46, 0.85) 100%);
+      outline: 1px solid rgba(189, 177, 162, 0.12);
+    }
+    .s5-incluso .phase .num {
+      color: var(--primary);
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0;
+      text-transform: none;
+      margin-bottom: 18px;
+    }
+    .s5-incluso .phase h3 { color: var(--off); font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .s5-incluso .phase p { color: var(--muted); font-size: 14px; }
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 38px;
+    }
+    .include {
+      min-height: 158px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(58, 28, 66, 0.65) 0%, rgba(38, 14, 46, 0.85) 100%);
+      border-radius: var(--radius);
+      outline: 1px solid rgba(189, 177, 162, 0.12);
+    }
+    .include strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--areia);
+    }
+    .include p {
+      margin: 0;
+      color: rgba(242, 244, 238, 0.88);
+      font-size: 14px;
+    }
+
+    .authority {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 56px;
+      align-items: center;
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .proof {
+      padding: 24px;
+      background: rgba(242, 244, 238, 0.055);
+      border-radius: var(--radius);
+      outline: 1px solid rgba(242, 244, 238, 0.08);
+    }
+    .proof strong {
+      display: block;
+      color: var(--primary);
+      font-size: 32px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .proof span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .fit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 36px;
+    }
+    .fit {
+      padding: 30px;
+      background: linear-gradient(180deg, rgba(56, 52, 53, 0.76), rgba(33, 31, 32, 0.86));
+      border-radius: var(--radius);
+      outline: 1px solid rgba(242, 244, 238, 0.08);
+    }
+    .fit h3 { margin-bottom: 18px; font-size: 24px; }
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+    li + li { margin-top: 10px; }
+
+    /* ── Dobra 6 — Para quem é ─────────────────── */
+    .s6-chip {
+      display: inline-flex;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(45, 19, 48, 0.18);
+      background: rgba(45, 19, 48, 0.05);
+      margin-bottom: 24px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--uva);
+    }
+    .s6-para-quem h2 {
+      font-family: var(--font-body);
+      font-style: normal;
+      font-weight: 700;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--grafite);
+    }
+    .section.light .fit {
+      background: rgba(189, 177, 162, 0.14);
+      outline: 1px solid rgba(45, 19, 48, 0.10);
+    }
+    .section.light .fit h3 {
+      color: var(--uva);
+      font-size: 20px;
+    }
+    .section.light ul {
+      color: rgba(38, 38, 38, 0.78);
+    }
+    .fit-yes ul,
+    .fit-no ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .fit-yes ul li,
+    .fit-no ul li {
+      position: relative;
+      padding-left: 26px;
+    }
+    .fit-yes ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+      color: var(--uva);
+    }
+    .fit-no ul li::before {
+      content: '×';
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+      color: #A08878;
+    }
+
+    /* ── Dobra 7 — Sobre Tathiely ─────────────── */
+    .s7-about { background: var(--uva); }
+    .s7-chip {
+      display: inline-flex;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(189, 177, 162, 0.22);
+      background: rgba(189, 177, 162, 0.06);
+      margin-bottom: 32px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--areia);
+    }
+    .s7-about h2 {
+      font-family: var(--font-body);
+      font-style: normal;
+      font-weight: 700;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--off);
+      margin-bottom: 0;
+    }
+    .s7-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 56px;
+    }
+    .s7-photo {
+      border-radius: 12px;
+      overflow: hidden;
+      position: sticky;
+      top: 100px;
+    }
+    .s7-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .s7-name {
+      font-family: var(--font-body);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--off);
+      margin: 0 0 6px;
+    }
+    .s7-role {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--areia);
+      letter-spacing: 0;
+      line-height: 1.2;
+      margin: 6px 0 32px;
+    }
+    .s7-body p {
+      color: rgba(242, 244, 238, 0.76);
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 0 0 18px;
+    }
+    .s7-body p:last-child { margin-bottom: 0; }
+    .s7-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .s7-stat {
+      padding: 28px 22px;
+      background: linear-gradient(180deg, rgba(58, 28, 66, 0.65) 0%, rgba(38, 14, 46, 0.85) 100%);
+      border-radius: var(--radius);
+      outline: 1px solid rgba(189, 177, 162, 0.12);
+    }
+    .s7-stat strong {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .s7-stat span {
+      font-size: 13px;
+      color: rgba(242, 244, 238, 0.70);
+      line-height: 1.5;
+    }
+
+    .offer {
+      background:
+        linear-gradient(135deg, rgba(45, 19, 48, 0.94), rgba(21, 19, 20, 0.98)),
+        var(--surface);
+    }
+    .offer-box {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      gap: 42px;
+      align-items: center;
+      padding: 46px;
+      background: rgba(242, 244, 238, 0.06);
+      border-radius: var(--radius);
+      outline: 1px solid rgba(242, 244, 238, 0.10);
+    }
+    .price {
+      padding: 34px;
+      background: var(--surface-top);
+      border-radius: var(--radius);
+    }
+    .price small {
+      display: block;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-bottom: 8px;
+    }
+    .price strong {
+      display: block;
+      color: var(--off);
+      font-size: 48px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .price span { color: var(--primary); }
+    .price .btn { width: 100%; margin-top: 24px; }
+
+    .faq {
+      display: grid;
+      gap: 12px;
+      margin-top: 36px;
+    }
+    details {
+      background: var(--surface-high);
+      border-radius: var(--radius);
+      outline: 1px solid rgba(242, 244, 238, 0.08);
+      overflow: hidden;
+    }
+    summary {
+      cursor: pointer;
+      padding: 22px 24px;
+      color: var(--off);
+      font-weight: 700;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      flex-shrink: 0;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1;
+      transition: transform 0.25s ease;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p {
+      margin: 0;
+      padding: 0 24px 24px;
+      color: var(--muted);
+    }
+    .section.light details {
+      background: rgba(189, 177, 162, 0.10);
+      outline: 1px solid rgba(45, 19, 48, 0.10);
+    }
+    .section.light summary {
+      color: var(--grafite);
+    }
+    .section.light details p {
+      color: rgba(38, 38, 38, 0.76);
+    }
+
+    .final {
+      text-align: left;
+      background: var(--uva);
+      overflow: hidden;
+    }
+    .final .wrap {
+      position: relative;
+      z-index: 1;
+    }
+    .final::before {
+      content: "";
+      position: absolute;
+      right: -120px;
+      bottom: -120px;
+      width: 420px;
+      height: 420px;
+      background: rgba(189, 177, 162, 0.10);
+      border-radius: 50%;
+    }
+    .final h2,
+    .offer-box h2,
+    .s8-faq h2 {
+      font-family: var(--font-body);
+      font-style: normal;
+      font-weight: 700;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+    .final h2 { color: var(--off); }
+    .offer-box h2 { color: var(--grafite); }
+    .s8-faq h2 { color: var(--grafite); }
+    .final .lead { margin-left: 0; margin-right: 0; }
+    /* ── WhatsApp footer bar (fixo) ──────────── */
+    body { padding-bottom: 56px; }
+    .wa-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--surface-low);
+      border-top: 1px solid rgba(242, 244, 238, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 56px;
+    }
+    .wa-footer-inner {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      max-width: var(--max);
+      padding: 0 40px;
+    }
+    .wa-footer-text {
+      font-size: 13px;
+      color: rgba(242, 244, 238, 0.50);
+      flex: 1;
+    }
+    .wa-footer a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      background: #25D366;
+      border-radius: 100px;
+      padding: 9px 18px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.2s ease;
+    }
+    .wa-footer a:hover { background: #1EBE5C; }
+    .wa-footer a svg { flex-shrink: 0; }
+
+    footer {
+      background: var(--surface);
+      color: rgba(242, 244, 238, 0.54);
+      font-size: 13px;
+      border-top: 1px solid rgba(242, 244, 238, 0.06);
+    }
+    .footer-contact {
+      padding: 48px 0 36px;
+    }
+    .footer-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(242, 244, 238, 0.40);
+      margin: 0 0 20px;
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: rgba(242, 244, 238, 0.60);
+      font-size: 14px;
+      transition: color 0.2s ease;
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--off); }
+    .footer-links svg {
+      flex-shrink: 0;
+      opacity: 0.60;
+    }
+    .footer-bottom {
+      padding: 20px 0;
+      border-top: 1px solid rgba(242, 244, 238, 0.06);
+      color: rgba(242, 244, 238, 0.30);
+      font-size: 12px;
+    }
+    footer .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    @media (max-width: 920px) {
+      .nav-links { display: none; }
+      .hero-grid,
+      .split,
+      .authority,
+      .offer-box {
+        grid-template-columns: 1fr;
+      }
+      .hero { min-height: auto; }
+      .portrait {
+        max-width: 460px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .method,
+      .included-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .proof-grid,
+      .fit-grid {
+        grid-template-columns: 1fr;
+      }
+      .phase {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .section { padding: 78px 0; }
+      .nav-inner { width: min(100% - 28px, var(--max)); }
+      .wrap { width: min(100% - 28px, var(--max)); }
+      .brand img { width: 126px; }
+      .btn { width: 100%; white-space: normal; text-align: center; }
+      .hero-actions { width: 100%; }
+      .method,
+      .included-grid,
+      .s2-grid {
+        grid-template-columns: 1fr;
+      }
+      .s2-card--risk, .s2-card--path { grid-column: 1; }
+      .s2-values { grid-template-columns: repeat(2, 1fr); }
+      .s2-anchor-inner { padding: 28px 24px; }
+      .s3-body-grid { grid-template-columns: 1fr; gap: 40px; }
+      .portrait img.photo { width: 100%; }
+      .offer-box { padding: 24px; }
+      footer .wrap { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Navegacao principal">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Set Data Hub">
+        <img src="../../branding/logos/2-Logo Setdatahub.png" alt="Set Data Hub">
+      </a>
+      <a class="nav-cta" href="https://forms.office.com/r/UuM9tw2Pi2" target="_blank" rel="noopener">Quero aplicar para a mentoria</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Mentoria Set Master</p>
+          <h1>Você entrega resultados, mas ainda não é visto como estratégico?</h1>
+          <h2>Isso muda com método, não aprendendo mais ferramenta.</h2>
+          <p class="lead">A Set Master é a mentoria para profissionais que já dominam a execução e querem se posicionar como líderes estratégicos, usando Dados e IA como diferencial competitivo para conquistar reconhecimento e acelerar crescimento profissional.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://forms.office.com/r/UuM9tw2Pi2" target="_blank" rel="noopener">Quero aplicar para a mentoria</a>
+            <a class="btn btn-secondary" href="#metodo">Ver como funciona</a>
+          </div>
+        </div>
+        <div class="portrait" aria-label="Tathiely Barreto">
+          <img class="photo" src="../../fotos/IMG_7277-Editarcopiar.jpg" alt="Tathiely Barreto, fundadora da Set Data Hub">
+        </div>
+      </div>
+    </header>
+
+    <section class="section s2-pain">
+      <div class="wrap">
+        <div class="s2-overline" data-reveal>
+          <span class="s2-chip">Você se reconhece aqui?</span>
+        </div>
+
+        <h2 class="s2-headline" data-reveal>
+          Você sente que está ficando para trás em um mercado onde a
+          <span class="s2-grad">tecnologia evolui mais rápido</span> a cada dia?
+        </h2>
+
+        <div class="s2-grid">
+          <div class="s2-card" data-reveal>
+            <span class="s2-card-label">Hoje</span>
+            <p>A inteligência artificial já executa, em minutos, tarefas que antes consumiam <strong>horas do seu trabalho</strong>.</p>
+          </div>
+
+          <div class="s2-card" data-reveal>
+            <span class="s2-card-label">Enquanto isso</span>
+            <p>Você continua preso à <strong>atualização de planilhas</strong>, consolidação de informações e produção de relatórios.</p>
+          </div>
+
+          <div class="s2-card s2-card--risk" data-reveal>
+            <span class="s2-card-label">O risco real</span>
+            <p>O risco não é a tecnologia substituir você. O risco é continuar dedicando seu tempo justamente às atividades que <strong>a tecnologia já consegue fazer</strong>.</p>
+          </div>
+
+          <div class="s2-card s2-card--path" data-reveal>
+            <span class="s2-card-label">O que realmente importa</span>
+            <div class="s2-path-inner">
+              <p>Os profissionais que mais crescem hoje não são os que trabalham mais. São os que utilizam dados e IA para <strong>reduzir o operacional</strong> e dedicar energia ao que realmente gera valor:</p>
+              <ul class="s2-values">
+                <li>Análise</li>
+                <li>Pensamento crítico</li>
+                <li>Influência</li>
+                <li>Decisão</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="s2-anchor" data-reveal>
+          <div class="s2-anchor-inner">
+            <p>A questão não é se você tem capacidade. É saber como usar o que você já domina para ocupar um espaço que a tecnologia não consegue preencher. E é exatamente isso que a <strong>Set Master</strong> ensina.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section s3-method" id="metodo">
+      <div class="wrap">
+        <div class="s3-header">
+          <span class="s3-chip" data-reveal>Método D.A.D.O.S.</span>
+          <h2 class="s3-headline" data-reveal>
+            A Set Master existe para transformar o profissional que executa no
+            <span class="s3-em">profissional que influencia</span>.
+          </h2>
+        </div>
+
+        <div class="s3-text" data-reveal>
+          <p>Não é mais um treinamento de ferramenta. Não é mais um curso de Excel ou Power BI.</p>
+          <p>A Set Master é uma mentoria estratégica que ensina você a usar Dados e IA com método, para sair do operacional, construir análises que a liderança valoriza e ocupar os espaços que a tecnologia não consegue preencher.</p>
+          <div class="s3-dados-reveal">
+            <span class="s3-dados-label">Esse método tem nome</span>
+          </div>
+        </div>
+
+        <div class="method" data-reveal>
+          <div class="method-card"><b>D</b><strong>Diagnóstico</strong><p>Entender onde você está, para onde quer ir e qual projeto real será desenvolvido.</p></div>
+          <div class="method-card"><b>A</b><strong>Apresentação</strong><p>Estruturar perguntas de negócio, indicadores, mockup e narrativa antes de construir.</p></div>
+          <div class="method-card"><b>D</b><strong>Decisão</strong><p>Construir dashboards e análises que respondem perguntas relevantes.</p></div>
+          <div class="method-card"><b>O</b><strong>Oportunidade</strong><p>Transformar o projeto entregue em visibilidade, portfólio e argumento de crescimento.</p></div>
+          <div class="method-card"><b>S</b><strong>Sucesso</strong><p>Consolidar posicionamento, plano de continuidade e próximos movimentos.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Dobra 4 – Prova Social ─────────────── -->
+    <section class="section light s4-social" id="depoimentos">
+      <div class="wrap">
+        <div class="s4-inner">
+          <div class="s4-deco-quote" aria-hidden="true">&rdquo;</div>
+          <div class="s4-overline" data-reveal>
+            <span class="s4-overline-text">Resultados de quem já passou por aqui</span>
+          </div>
+          <h2 class="s4-headline" data-reveal>O que dizem quem aplicou</h2>
+          <div class="s4-carousel-wrap" data-reveal>
+            <button class="s4-btn" aria-label="Anterior" id="s4Prev">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="s4-track-outer">
+              <div class="s4-track" id="s4Track">
+                <div class="s4-slide"><img src="Depoimento1.jpeg" alt="Depoimento Elana – Set Master" loading="lazy"></div>
+                <div class="s4-slide"><img src="Depoimento2.jpg" alt="Depoimento Christiane – Set Master" loading="lazy"></div>
+                <div class="s4-slide"><img src="Depoimento3.jpg" alt="Depoimento Gilberto – Set Master" loading="lazy"></div>
+              </div>
+            </div>
+            <button class="s4-btn" aria-label="Próximo" id="s4Next">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+          <div class="s4-dots">
+            <button class="s4-dot s4-active" aria-label="Slide 1"></button>
+            <button class="s4-dot" aria-label="Slide 2"></button>
+            <button class="s4-dot" aria-label="Slide 3"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section s5-incluso" id="jornada">
+      <div class="wrap">
+        <span class="s5-chip">A Jornada</span>
+        <h2>Como a transformação acontece dentro da Set Master</h2>
+        <p class="text" style="margin-bottom:44px;color:rgba(242,244,238,0.80);">A Set Master é uma jornada estruturada em 5 fases, do diagnóstico ao posicionamento, com estrutura técnica e estratégia de carreira.</p>
+        <div class="timeline">
+          <article class="phase">
+            <div class="num">1</div>
+            <div><h3>Diagnóstico e Direção</h3><p>Entender onde você está, para onde quer ir e qual projeto vai desenvolver.</p></div>
+          </article>
+          <article class="phase">
+            <div class="num">2</div>
+            <div><h3>Estruturação do Projeto</h3><p>Aprender a pensar como analista estratégico antes de criar qualquer dashboard.</p></div>
+          </article>
+          <article class="phase">
+            <div class="num">3</div>
+            <div><h3>Planejamento e Storytelling</h3><p>Antes de construir, visualizar. Antes de apresentar, narrar.</p></div>
+          </article>
+          <article class="phase">
+            <div class="num">4</div>
+            <div><h3>Desenvolvimento Técnico</h3><p>Construir o projeto real, com dados reais, do início ao fim.</p></div>
+          </article>
+          <article class="phase">
+            <div class="num">5</div>
+            <div><h3>Posicionamento e Crescimento</h3><p>O projeto está pronto. Agora é hora de se posicionar com ele.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light s6-para-quem">
+      <div class="wrap">
+        <span class="s6-chip">Para quem é</span>
+        <h2>Você está no lugar certo?</h2>
+        <div class="fit-grid">
+          <div class="fit fit-yes">
+            <h3>A Set Master é para você se...</h3>
+            <ul>
+              <li>Você é um profissional de alta performance, futuro líder, líder em ascensão ou profissional estratégico em desenvolvimento.</li>
+              <li>Você já usa Excel, Power BI, planilhas, indicadores ou IA no trabalho.</li>
+              <li>Você sente que seu potencial ainda não é percebido pela liderança.</li>
+              <li>Você quer construir um projeto real que gere visibilidade e reconhecimento.</li>
+            </ul>
+          </div>
+          <div class="fit fit-no">
+            <h3>Não é para você se...</h3>
+            <ul>
+              <li>Você procura um curso básico de ferramenta.</li>
+              <li>Você quer apenas copiar templates prontos.</li>
+              <li>Você espera resultado sem aplicar o método no seu contexto real.</li>
+              <li>Você quer um dashboard bonito sem conexão com decisão.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section s7-about">
+      <div class="wrap">
+        <span class="s7-chip">Quem vai te guiar</span>
+        <div class="s7-grid">
+          <div class="s7-photo">
+            <img src="../../fotos/IMG_7411.jpeg" alt="Tathiely Barreto — Mentora Set Master" loading="lazy">
+          </div>
+          <div class="s7-content-col">
+            <h2>Tathiely Barreto</h2>
+            <p class="s7-role">Líder · Mentora · Fundadora da Set Data Hub</p>
+            <div class="s7-body">
+              <p>Comecei minha carreira no setor aeroportuário, onde desenvolvi uma visão estratégica profunda sobre como operações complexas funcionam e, principalmente, sobre como decisões orientadas por dados podem transformar resultados.</p>
+              <p>Hoje, uno minha trajetória corporativa a uma atuação estratégica em Business Intelligence, ajudando líderes e empresários a saírem do caos de informações desconectadas para uma realidade de controle e decisões assertivas, por meio de planilhas, sistemas e painéis personalizados.</p>
+              <p>Como mentora, oriento profissionais a se posicionarem com inteligência, utilizando dados e IA como diferencial competitivo para conquistar reconhecimento e acelerar crescimento profissional.</p>
+            </div>
+          <div class="s7-stats" style="margin-top: 36px;">
+            <div class="s7-stat">
+              <strong>+15</strong>
+              <span>anos de experiência no corporativo</span>
+            </div>
+            <div class="s7-stat">
+              <strong>+5</strong>
+              <span>anos à frente da Set Data Hub</span>
+            </div>
+            <div class="s7-stat">
+              <strong>+25</strong>
+              <span>empresas atendidas em projetos de BI e dashboards</span>
+            </div>
+            <div class="s7-stat">
+              <strong>+45</strong>
+              <span>alunos em treinamentos e mentorias</span>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light s8-faq" id="faq">
+      <div class="wrap">
+        <span class="s6-chip">Dúvidas frequentes</span>
+        <h2>Talvez você esteja pensando...</h2>
+        <div class="faq">
+          <details open>
+            <summary>"Preciso dominar o Excel ou o Power BI antes de entrar?"</summary>
+            <p>Ter conhecimentos intermediários de Excel e básico de Power BI é suficiente. O que define sua entrada não é o nível técnico, é o seu momento de carreira. Você vai desenvolver a parte técnica dentro do programa, com o suporte da Set Academy, no ritmo que o seu projeto exige.</p>
+          </details>
+          <details>
+            <summary>"Não tenho tempo."</summary>
+            <p>Os encontros ao vivo são quinzenais e também ficam gravados. Já as sessões individuais são agendadas conforme minha disponibilidade e a sua. Você vai precisar de 2 a 4 horas semanais para investir em seu desenvolvimento. O tempo vai passar de qualquer forma. A pergunta real é: como você estará daqui a 6 meses?</p>
+          </details>
+          <details>
+            <summary>"Já investi em cursos antes e não consegui aplicar na minha área."</summary>
+            <p>Cursos ensinam ferramenta. A Set Master ensina método. A diferença é que aqui você não vai replicar um exemplo genérico. Vai construir um projeto real, no seu contexto, com os seus dados, do início ao fim com meu acompanhamento.</p>
+          </details>
+          <details>
+            <summary>"E se eu não tiver certeza se é para mim?"</summary>
+            <p>Você não precisa ter certeza agora. Após a sua aplicação, vou avaliar o seu momento e, em uma conversa rápida, a gente confirma juntos se faz sentido.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final" id="sessao">
+      <div class="wrap">
+        <span class="s7-chip">Sua decisão</span>
+        <h2>Se você chegou até aqui, você sabe que o próximo passo não é aprender mais uma ferramenta.</h2>
+        <p class="lead">É aprender a usar dados e IA com o que você já sabe para construir o reconhecimento que você merece.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://forms.office.com/r/UuM9tw2Pi2" target="_blank" rel="noopener">Quero aplicar para a mentoria</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function() {
+      var s4idx = 0, s4total = 3;
+      var s4track = document.getElementById('s4Track');
+      var s4dots = document.querySelectorAll('.s4-dot');
+      function s4Go(n) {
+        s4idx = (n + s4total) % s4total;
+        s4track.style.transform = 'translateX(' + (-100 * s4idx) + '%)';
+        s4dots.forEach(function(d, i) { d.classList.toggle('s4-active', i === s4idx); });
+      }
+      document.getElementById('s4Prev').addEventListener('click', function() { s4Go(s4idx - 1); });
+      document.getElementById('s4Next').addEventListener('click', function() { s4Go(s4idx + 1); });
+      s4dots.forEach(function(d, i) { d.addEventListener('click', function() { s4Go(i); }); });
+    })();
+
+    (function() {
+      var els = document.querySelectorAll('[data-reveal]');
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+      els.forEach(function(el) { io.observe(el); });
+    })();
+  </script>
+
+  <footer>
+    <div class="footer-contact">
+      <div class="wrap">
+        <p class="footer-label">Contato</p>
+        <div class="footer-links">
+          <a href="tel:+5541992287041">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16l.92.92Z"/></svg>
+            +55 41 99228-7041
+          </a>
+          <a href="mailto:contato@setdatahub.com.br">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            contato@setdatahub.com.br
+          </a>
+          <a href="https://instagram.com/setdatahub" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            @setdatahub
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="wrap">© 2026 Set DataHub · Set Academy · Todos os direitos reservados.</div>
+    </div>
+  </footer>
+
+  <div class="wa-footer">
+    <div class="wa-footer-inner">
+      <span class="wa-footer-text">Tem dúvidas sobre a Set Master?</span>
+      <a href="https://wa.me/5541992287041" target="_blank" rel="noopener" aria-label="Fale no WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.51 5.838L.057 23.5a.5.5 0 0 0 .61.61l5.668-1.453A11.955 11.955 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.9 9.9 0 0 1-5.031-1.374l-.36-.214-3.733.957.974-3.63-.235-.374A9.867 9.867 0 0 1 2.1 12C2.1 6.534 6.534 2.1 12 2.1c5.466 0 9.9 4.434 9.9 9.9 0 5.466-4.434 9.9-9.9 9.9z"/></svg>
+        Fale no WhatsApp
+      </a>
+    </div>
+  </div>
+</body>
+</html>
